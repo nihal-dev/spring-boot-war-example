@@ -16,7 +16,7 @@ pipeline{
         }
         stage("Deploy to Test"){
             steps{
-                echo "Deployment is complete!"
+                deploy adapters: [tomcat9(credentialsId: 'tomcat-creds', path: '', url: 'http://192.168.1.128:8083')], contextPath: null, onFailure: false, war: '**/*.war'
             }
         }
     }
