@@ -15,6 +15,10 @@ pipeline{
             }
         }
         stage("Deploy to Test"){
+            input {
+                message "Good to continue..?"
+                ok "Yes, Continue"
+            }
             steps{
                 deploy adapters: [tomcat9(credentialsId: 'tomcat-creds', path: '', url: 'http://192.168.1.128:8083')], contextPath: null, onFailure: false, war: '**/*.war'
             }
